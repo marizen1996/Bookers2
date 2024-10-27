@@ -19,19 +19,25 @@
 <tbody>
 
 
- <td><%= image_tag url_for(@user.profile_image), size:'80x80' %>
-<%=link_to @user.name ,user_path(current_user.id) %></td>
-
+ <td>
+<%=link_to user_path(current_user.id) do %>
+<%= image_tag @user.get_profile_image(80,80) %><br>
+<%= @user.name  %>
+<% end %>
+</td>
 
 <td><%= @book.title %></td>
 
 <td><%= @book.body %></td>
+
+<% if @user == current_user %>
 <td>
 <%= link_to "edit", edit_book_path(@book.id),class: "btn btn-success" %>
 </td>
 <td>
-<%= link_to "destroy", book_path(@book.id),method: :delete, "data-confirm" => "本当に削除しますか",class: "btn btn-danger" %>
+<%= link_to "destroy", book_path,method: :delete, "data-confirm" => "本当に削除しますか",class: "btn btn-danger" %>
 </td>
+<% end %>
 
 </tbody>
 </table>

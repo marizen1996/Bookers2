@@ -1,14 +1,9 @@
-  <div>
-      <%= flash[:notice] %>
-  </div>
 
   <h2>User info</h2>
 
-  <% if user.profile_image.attached? %>
-  <%= image_tag url_for(user.profile_image), class: "img-thumbnail", size: '100x100' %>
-<% else %>
-  <p>画像がアップロードされていません</p>
-<% end %>
+
+  <%= image_tag user.get_profile_image(100,100) %>
+
 
 <table class="table">
   <tbody>
@@ -18,8 +13,8 @@
  </tr>
 
  <tr>
-   <th>Intoroduction</th>
-   <th><%= @user_introduction %></th>
+   <th>Introduction</th>
+   <th><%= user.introduction %></th>
  </tr>
  </tbody>
  </table>
